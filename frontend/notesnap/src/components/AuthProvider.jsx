@@ -12,20 +12,25 @@ const AuthProvider = ({ children }) => {
   );
   const navigate = useNavigate();
   const loginAction = async (data) => {
-    if (Object.keys(token).length !== 0) return;
-    const response = await fetch("http://localhost:8000/api/login/", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    const res = await response.json();
-    if (res && !("error" in res)) {
-      setUser(res);
+    // if (Object.keys(token).length !== 0) return;
+    // const response = await fetch("http://localhost:8000/api/login/", {
+    //   method: "POST",
+    //   body: JSON.stringify(data),
+    // });
+    console.log(data)
       navigate("/");
-      localStorage.setItem("user", JSON.stringify(res));
-      setToken(res);
-      return;
-    }
-    throw new Error(res.error);
+       localStorage.setItem("user", JSON.stringify(data));
+      setToken(data);
+return
+    // const res = await response.json();
+    // if (res && !("error" in res)) {
+    //   setUser(res);
+    //   navigate("/");
+    //   localStorage.setItem("user", JSON.stringify(res));
+    //   setToken(res);
+    //   return;
+    // }
+    // throw new Error(res.error);
   };
 
   const logOut = () => {
